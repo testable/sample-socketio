@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')('http://localhost:5811');
+var socket = require('socket.io-client')('http://dev.testable.io:5811');
 socket.on('connect', function(){
 	console.log('connected');
 	socket.emit('message', 'This is a test');

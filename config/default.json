@@ -2,9 +2,9 @@
     "Service": {
         "port": 80,
         "log": {
-            "file": "agent.log",
-            "level": "verbose",
-            "console": true
+            "file": "/logs/agent.log",
+            "level": "info",
+            "console": false
         }
     }
 }

@@ -1,5 +1,10 @@
 {
     "Service": {
-        "port": 5811
+        "port": 5811,
+        "log": {
+            "file": "agent.log",
+            "level": "verbose",
+            "console": true
+        }
     }
 }
