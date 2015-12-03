@@ -1,0 +1,7 @@
+{
+    "Service": {
+        "log": {
+            "level": "info"
+        }
+    }
+}

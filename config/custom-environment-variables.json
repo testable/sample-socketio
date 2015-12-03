@@ -1,0 +1,9 @@
+{
+    "Service": {
+        "port": "SERVICE_PORT",
+        "log": {
+            "file": "AGENT_LOG_FILE",
+            "level": "AGENT_LOG_LEVEL"
+        }
+    }
+}
