@@ -26,6 +26,4 @@ io.on('connection', function (socket) {
         logger.info('Disconnected: ', socket.id)
         socket.emit('user disconnected');
     });
-    
-    setTimeout(function() { socket.end(); }, 5000);
 });
