@@ -28,7 +28,7 @@ io.on('connection', function (socket) {
 });
 
 var engine = require('engine.io');
-var server = engine.listen(config.get("Service.port") + 1);
+var server = engine.listen(Number(config.get("Service.port")) + 1);
 
 server.on('connection', function (socket) {
     logger.info('Received new engine.io connection: ', socket.id);
