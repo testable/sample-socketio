@@ -1,0 +1,6 @@
+sample_node:
+  build:
+    image: sample_node
+    dockerfile: Dockerfile
+  environment:
+    TESTABLE_KEY: uxtfbnemxqvdsxjhpobmgpuhqvrmbvwtwvohed
