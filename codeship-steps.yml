@@ -4,7 +4,7 @@
 - name: Testable
   service: sample_app
   command: >
-    /bin/bash -c 'testable-kpi-monitor.sh $(curl -sS
+    /bin/bash -c './testable-kpi-monitor.sh $(curl -sS
     -F "code=@test.js"
     -F "concurrent_users_per_region=5"
     -F "duration_mins=1"
