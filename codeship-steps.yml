@@ -1,3 +1,0 @@
-- name: Testable
-  service: app
-  command: echo "test"
