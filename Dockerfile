@@ -4,6 +4,8 @@ FROM nodesource/trusty:4.2.5
 ADD package.json /usr/src/app/package.json
 RUN npm install
 
+RUN apt-get update && apt-get install -y jq
+
 # Add your source files
 ADD app /usr/src/app/app/
 ADD config /usr/src/app/config/
