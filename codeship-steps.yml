@@ -1,0 +1,3 @@
+- name: example_deploy
+  service: sample_app
+  command: echo "Deploy here!"
