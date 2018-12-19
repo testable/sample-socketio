@@ -7,6 +7,8 @@ while [ $(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.i
   sleep 5
 done
 
+details=$(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/$execution_id)
+
 latency=$(echo "$details" | jq -r '.summary.metrics | .[] | select(.metricDef=="firstReceivedMs") | .metricValueMap.p50')
 total_outcomes=$(echo "$details" | jq -r '.summary.metrics | .[] | select(.metricDef=="outcome") | .metricValue')
 success_outcomes=$(echo "$details" | jq -r '.summary.metrics | .[] | select(.metricDef=="outcome") | .metricValueMap.success')
@@ -19,7 +21,6 @@ epoch=$(date +"%s")
 echo "[$(date)] Storing CSV results at results-$epoch.csv"
 curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/$execution_id/results.csv > results-$epoch.csv
 
-details=$(curl -H "X-Testable-Key:$TESTABLE_KEY" --silent https://api.testable.io/executions/$execution_id)
 if [ $(echo "$details" | jq -r ".success") = "false" ]; then
   echo -e "\n[$(date)] Test FAILED"
   exit 1
