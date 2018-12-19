@@ -1,14 +1,3 @@
 - name: Testable
-  tag: master
   service: app
-  command: >
-    testable-kpi-monitor.sh $(curl -sS
-      -F "code=@test.js"
-      -F "concurrent_users_per_region=5"
-      -F "duration_mins=1"
-      -F "rampup_mins=0"
-      -F "conf_testrunners[0].regions=aws-us-east-1"
-      -F "kpis[0].expr=Outcome[success] > 95%"
-      -F "kpis[1].expr=Response Time[Median] < 300ms"
-      -F "testcase_name=Api Test"
-      https://api.testable.io/start?key=$TESTABLE_KEY)
+  command: echo "test"
