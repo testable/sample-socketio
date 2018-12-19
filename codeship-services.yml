@@ -1,5 +1,4 @@
-app:
+sample_app:
   build: .
-  image: testable/sample-node
   environment:
     TESTABLE_KEY: uxtfbnemxqvdsxjhpobmgpuhqvrmbvwtwvohed
