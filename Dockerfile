@@ -7,4 +7,6 @@ RUN npm install
 # Add your source files
 ADD app /usr/src/app/app/
 ADD config /usr/src/app/config/
+ADD test.js /usr/src/app/test/test.js
+ADD testable-kpi-monitor.sh /usr/src/app/testable-kpi-monitor.sh
 CMD ["node","app/index.js"]
