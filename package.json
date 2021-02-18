@@ -7,9 +7,9 @@
   "dependencies": {
     "another-rolling-file-transport": "git://github.com/yubeiluo/Winston-Rolling-File-Appender.git",
     "config": "^1.26.1",
-    "engine.io": "^3.1.0",
-    "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3",
+    "engine.io": "^4.1.1",
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^3.1.1",
     "winston": "^2.3.1"
   }
 }
