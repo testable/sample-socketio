@@ -1,5 +1,7 @@
 FROM node:10
 
+WORKDIR /usr/src/app
+
 # cache package.json and node_modules to speed up builds
 ADD package.json /usr/src/app/package.json
 RUN npm install
