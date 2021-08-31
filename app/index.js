@@ -12,7 +12,7 @@ if (logConsole)
     logger.add(winston.transports.Console, { level: logLevel });
 logger.add(winston.transports.RollingFile, { filename: logFile, level: logLevel, timestamp: true, maxFiles: 10, json: false });
 
-var io = require('socket.io')(config.get("Service.port"));
+var io = require('socket.io')(config.get("Service.port"), { allowEIO3: true });
 
 io.on('connection', function (socket) {
     logger.info('Received new socket.io connection: ', socket.id);
