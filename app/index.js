@@ -18,7 +18,8 @@ io.on('connection', function (socket) {
     logger.info('Received new socket.io connection: ', socket.id);
 
     socket.on('event', function (msg, callback) {
-	callback('acknowledgement');
+	if (callback)
+	    callback('acknowledgement');
         logger.verbose('Received msg ', msg, ' from ', socket.id);
         socket.emit('event', 'Echo: ' + msg);
     });
