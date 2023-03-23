@@ -6,11 +6,15 @@ const logLevel = config.get("Service.log.level");
 const logFile = config.get("Service.log.file");
 const logConsole = config.get("Service.log.console");
 
-const logger = new winston.Logger();
-logger.handleExceptions(new winston.transports.File({ filename: logFile, json: false }));
+const transports = [ new winston.transports.DailyRotateFile({ filename: logFile, maxFiles: '10d', maxSize: '20m' }) ];
 if (logConsole)
-    logger.add(winston.transports.Console, { level: logLevel });
-logger.add(winston.transports.DailyRotateFile, { filename: logFile, maxFiles: '10d', maxSize: '20m' });
+    transports.push(new winston.transports.Console({ level: logLevel }));
+const logger = winston.createLogger({
+    transports,
+    exceptionHandlers: [
+        new winston.transports.File({ filename: logFile })
+    ]
+});
 
 const io = require('socket.io')(config.get("Service.port"), { allowEIO3: true });
 
