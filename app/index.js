@@ -1,18 +1,18 @@
-var winston = require('winston');
-var config = require('config');
-var RollingFile = require('another-rolling-file-transport');
+const winston = require('winston');
+const config = require('config');
+require('winston-daily-rotate-file');
 
-var logLevel = config.get("Service.log.level");
-var logFile = config.get("Service.log.file");
-var logConsole = config.get("Service.log.console");
+const logLevel = config.get("Service.log.level");
+const logFile = config.get("Service.log.file");
+const logConsole = config.get("Service.log.console");
 
-var logger = new winston.Logger();
+const logger = new winston.Logger();
 logger.handleExceptions(new winston.transports.File({ filename: logFile, json: false }));
 if (logConsole)
     logger.add(winston.transports.Console, { level: logLevel });
-logger.add(winston.transports.RollingFile, { filename: logFile, level: logLevel, timestamp: true, maxFiles: 10, json: false });
+logger.add(winston.transports.DailyRotateFile, { filename: logFile, maxFiles: '10d', maxSize: '20m' });
 
-var io = require('socket.io')(config.get("Service.port"), { allowEIO3: true });
+const io = require('socket.io')(config.get("Service.port"), { allowEIO3: true });
 
 io.on('connection', function (socket) {
     logger.info('Received new socket.io connection: ', socket.id);
@@ -29,8 +29,8 @@ io.on('connection', function (socket) {
     });
 });
 
-var engine = require('engine.io');
-var server = engine.listen(Number(config.get("Service.port")) + 1);
+const engine = require('engine.io');
+const server = engine.listen(Number(config.get("Service.port")) + 1);
 
 server.on('connection', function (socket) {
     logger.info('Received new engine.io connection: ', socket.id);
