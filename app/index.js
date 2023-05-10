@@ -34,7 +34,8 @@ io.on('connection', function (socket) {
 });
 
 const engine = require('engine.io');
-const server = engine.listen(Number(config.get("Service.port")) + 1);
+const httpServer = require('http').createServer().listen(Number(config.get("Service.port")) + 1);
+const server = new engine.Server();
 
 server.on('connection', function (socket) {
     logger.info('Received new engine.io connection: ', socket.id);
@@ -46,4 +47,16 @@ server.on('connection', function (socket) {
     socket.on('close', function () {
         logger.info('Disconnected: ', socket.id);
     });
+});
+
+httpServer.on('upgrade', (req, socket, head) => {
+    server.handleUpgrade(req, socket, head);
+});
+
+httpServer.on('request', (req, res) => {
+    if (req.url === '/') {
+        res.end('OK');
+    } else {
+        server.handleRequest(req, res);
+    }
 });
